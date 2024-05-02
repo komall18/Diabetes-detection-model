@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style="text-align:center;">Diabetes Prediction</title>
+  <style>
+    body {
+      background: #98d5ea;
+      font-family: Arial, sans-serif; /* Change font-family to sans-serif */
+    }
+    input[type=text] {
+      border-radius: 15px; /* Make boxes rounder from edges */
+      height: 40px; /* Increase height of boxes */
+      padding: 5px; /* Adjust padding if needed */
+      margin-bottom: 20px; /* Increase space between input boxes */
+      width: 250px; /* Width of input boxes */
+    }
+    button[type=submit] {
+      border-radius: 15px; /* Make button rounder from edges */
+      height: 40px; /* Height of button */
+      padding: 5px 20px; /* Adjust padding if needed */
+      margin-bottom: 10px; /* Increase space between button and input boxes */
+      width: 200px; /* Width of button */
+      background-color: #4CAF50; /* Green background color */
+      color: white; /* Text color */
+      border: none; /* No border */
+      cursor: pointer; /* Cursor on hover */
+    }
+    button[type=submit]:hover {
+      background-color: #45a049; /* Darker green background color on hover */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login" style="text-align:center;">
+    <h1 style="color: rgb(4, 3, 34); margin-bottom: 30px;">Diabetes Prediction</h1>
+
+    <form id="prediction-form" onsubmit="event.preventDefault();">
+      <input type="text" id="age" name="remainder__age" placeholder="Age" required="required"><br>
+      <input type="text" id="hypertension" name="remainder__hypertension" placeholder="Hypertension" required="required"><br>
+      <input type="text" id="bmi" name="remainder__bmi" placeholder="BMI" required="required"><br>
+      <input type="text" id="hba1c" name="remainder__HbA1c_level" placeholder="HbA1c Level" required="required"><br>
+      <input type="text" id="glucose" name="remainder__blood_glucose_level" placeholder="Blood Glucose Level" required="required"><br>
+
+      <br> <!-- Adding some space before the button -->
+      <button type="button" onclick="predict()">Predict Diabetes</button>
+    </form>
+
+    <br>
+    <br>
+    <h4 id="prediction-text" style="color: rgb(12, 0, 0); margin-bottom: 20px;">{{ prediction_text }}</h4>
+  </div>
+
+  <script>
+    function predict() {
+      var age = document.getElementById("age").value;
+      var hypertension = document.getElementById("hypertension").value;
+      var bmi = document.getElementById("bmi").value;
+      var hba1c = document.getElementById("hba1c").value;
+      var glucose = document.getElementById("glucose").value;
+
+      // Prediction logic
+      var diabetesPrediction = predictDiabetes(age, hypertension, bmi, hba1c, glucose);
+      var predictionText = "Prediction for Age: " + age + ", Hypertension: " + hypertension + ", BMI: " + bmi + ", HbA1c Level: " + hba1c + ", Blood Glucose Level: " + glucose + ", Diabetes Prediction: " + diabetesPrediction;
+
+      document.getElementById("prediction-text").innerText = predictionText;
+    }
+
+    // Example prediction logic (replace with your actual prediction function)
+    function predictDiabetes(age, hypertension, bmi, hba1c, glucose) {
+      // Example logic: if age is greater than 50, predict diabetes
+      if (parseInt(age) > 50) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  </script>
+</body>
+</html>
